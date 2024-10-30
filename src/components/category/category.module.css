@@ -34,4 +34,8 @@
     font-weight: 600;
     text-align: center;
   }
+
+  .category:last-of-type {
+    margin-bottom: 50px; /* Ensures a 50px gap from the bottom of the screen */
+  }
 }
