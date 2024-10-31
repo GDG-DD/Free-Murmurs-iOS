@@ -15,8 +15,6 @@ export function Categories({ categories }: CategoriesProps) {
       {categories.map((category, index) => (
         <div key={category.id}>
           <Category functional={category.id !== 'favorites'} {...category} />
-
-          {index === 3 && <Donate />}
         </div>
       ))}
     </AnimatePresence>
