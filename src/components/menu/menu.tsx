@@ -117,13 +117,13 @@ export function Menu() {
                     />
                     <PomodoroItem open={() => open('pomodoro')} />
                     <NotepadItem open={() => open('notepad')} />
-                    <CountdownTimerItem />
+                     {/* <CountdownTimerItem /> */}
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
 
                     <Divider />
-                    <DonateItem />
+                    {/* <DonateItem /> */}
                 
                   </motion.div>
                 </DropdownMenu.Content>
