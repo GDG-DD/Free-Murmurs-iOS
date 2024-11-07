@@ -6,8 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import {
   ShuffleItem,
-  ShareItem,
-  DonateItem,
+  //ShareItem,
   NotepadItem,
   SourceItem,
   PomodoroItem,
@@ -18,7 +17,7 @@ import {
   BreathingExerciseItem,
 } from './items';
 import { Divider } from './divider';
-import { ShareLinkModal } from '@/components/modals/share-link';
+//import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
@@ -41,7 +40,7 @@ export function Menu() {
       notepad: false,
       pomodoro: false,
       presets: false,
-      shareLink: false,
+      //shareLink: false,
       shortcuts: false,
       sleepTimer: false,
     }),
@@ -66,14 +65,14 @@ export function Menu() {
     [closeAll],
   );
 
-  useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+n', () => open('notepad'));
-  useHotkeys('shift+p', () => open('pomodoro'));
-  useHotkeys('shift+b', () => open('breathingExercise'));
-  useHotkeys('shift+alt+p', () => open('presets'));
-  useHotkeys('shift+h', () => open('shortcuts'));
-  useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  useHotkeys('shift+t', () => open('sleepTimer'));
+  // useHotkeys('shift+m', () => setIsOpen(prev => !prev));
+  // useHotkeys('shift+n', () => open('notepad'));
+  // useHotkeys('shift+p', () => open('pomodoro'));
+  // useHotkeys('shift+b', () => open('breathingExercise'));
+  // useHotkeys('shift+alt+p', () => open('presets'));
+  // useHotkeys('shift+h', () => open('shortcuts'));
+  // useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
+  // useHotkeys('shift+t', () => open('sleepTimer'));
 
   useCloseListener(closeAll);
 
@@ -107,7 +106,7 @@ export function Menu() {
                     variants={variants}
                   >
                     <PresetsItem open={() => open('presets')} />
-                    <ShareItem open={() => open('shareLink')} />
+                    {/*<ShareItem open={() => open('shareLink')} /> */}
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
 
@@ -117,14 +116,13 @@ export function Menu() {
                     />
                     <PomodoroItem open={() => open('pomodoro')} />
                     <NotepadItem open={() => open('notepad')} />
-                     {/* <CountdownTimerItem /> */}
+                    {/* <CountdownTimerItem /> */}
 
-                    <Divider />
-                    <ShortcutsItem open={() => open('shortcuts')} />
+                    {/*<Divider />*/}
+                    {/*<ShortcutsItem open={() => open('shortcuts')} />*/}
 
-                    <Divider />
+                    {/*<Divider />*/}
                     {/* <DonateItem /> */}
-                
                   </motion.div>
                 </DropdownMenu.Content>
               </DropdownMenu.Portal>
@@ -133,14 +131,14 @@ export function Menu() {
         </DropdownMenu.Root>
       </div>
 
-      <ShareLinkModal
+      {/*<ShareLinkModal
         show={modals.shareLink}
         onClose={() => close('shareLink')}
-      />
-      <ShortcutsModal
+      />*/}
+      {/*<ShortcutsModal
         show={modals.shortcuts}
         onClose={() => close('shortcuts')}
-      />
+      />*/}
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <Notepad show={modals.notepad} onClose={() => close('notepad')} />
       <Pomodoro

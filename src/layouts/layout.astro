@@ -35,6 +35,28 @@ const description =
     <meta content="https://murmurs.stream/og.png" property="og:image" />
 
     <meta content="summary_large_image" name="twitter:card" />
+
+    <!-- Add your tracking code here -->
+    <script
+      async
+      defer
+      src="https://app.visitortracking.com/assets/js/tracer.js"></script>
+    <script>
+      // Initialize the tracer for tracking viewers
+      function init_tracer() {
+        var tracer = new Tracer({
+          async: true,
+          debug: false,
+          websiteId: '162f5cfc-31fd-4004-a9bb-8976c7ad7821',
+        });
+
+        // Example of tracking a page view
+        tracer.trackPageView(); // Call this method to track the page view
+      }
+
+      // Call the function immediately to ensure tracking is set up
+      init_tracer();
+    </script>
   </head>
   <body>
     <slot />
