@@ -1,11 +1,10 @@
+import { MdSmartToy, MdWaterDrop, MdRadio } from 'react-icons/md/index';
+import { FaKeyboard, FaClock, FaFan } from 'react-icons/fa/index';
 import {
   GiWindchimes,
   GiFilmProjector,
   GiWashingMachine,
 } from 'react-icons/gi/index';
-import { BsFillKeyboardFill } from 'react-icons/bs/index';
-import { FaKeyboard, FaClock, FaFan } from 'react-icons/fa/index';
-import { MdSmartToy, MdWaterDrop, MdRadio } from 'react-icons/md/index';
 import { TbBowlFilled } from 'react-icons/tb/index';
 import { RiFilePaper2Fill, RiBubbleChartFill } from 'react-icons/ri/index';
 import { BiSolidDryer } from 'react-icons/bi/index';
@@ -16,13 +15,23 @@ import type { Category } from '../types';
 export const things: Category = {
   icon: <MdSmartToy />,
   id: 'things',
+  premium: {
+    icon: (
+      <a
+        href="https://play.google.com/store/apps/details?id=your.app.id"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Get it on Google Play"
+          src="/images/google-play-badge.png"
+          style={{ width: '150px' }} // Adjust the size as needed
+        />
+      </a>
+    ),
+    message: 'Get the Premium Version here!',
+  },
   sounds: [
-    {
-      icon: <BsFillKeyboardFill />,
-      id: 'keyboard',
-      label: 'Keyboard',
-      src: '/sounds/things/keyboard.mp3',
-    },
     {
       icon: <FaKeyboard />,
       id: 'typewriter',
@@ -30,16 +39,16 @@ export const things: Category = {
       src: '/sounds/things/typewriter.mp3',
     },
     {
-      icon: <RiFilePaper2Fill />,
-      id: 'paper',
-      label: 'Paper',
-      src: '/sounds/things/paper.mp3',
-    },
-    {
       icon: <FaClock />,
       id: 'clock',
       label: 'Clock',
       src: '/sounds/things/clock.mp3',
+    },
+    {
+      icon: <FaFan />,
+      id: 'ceiling-fan',
+      label: 'Ceiling Fan',
+      src: '/sounds/things/ceiling-fan.mp3',
     },
     {
       icon: <GiWindchimes />,
@@ -52,12 +61,6 @@ export const things: Category = {
       id: 'singing-bowl',
       label: 'Singing Bowl',
       src: '/sounds/things/singing-bowl.mp3',
-    },
-    {
-      icon: <FaFan />,
-      id: 'ceiling-fan',
-      label: 'Ceiling Fan',
-      src: '/sounds/things/ceiling-fan.mp3',
     },
     {
       icon: <BiSolidDryer />,

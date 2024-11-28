@@ -38,4 +38,21 @@
   .category:last-of-type {
     margin-bottom: 50px; /* Ensures a 50px gap from the bottom of the screen */
   }
+
+  /* New styles for the premium section */
+  & .premium {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  & .premium p {
+    font-size: var(--font-md);
+    color: var(--color-primary);
+    margin-bottom: 10px;
+  }
+
+  & .premiumIcon {
+    font-size: var(--font-lg);
+    color: var(--color-primary);
+  }
 }

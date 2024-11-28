@@ -1,4 +1,5 @@
 import { Sounds } from '@/components/sounds';
+import { PremiumContainer } from '@/components/PremiumContainer/PremiumContainer';
 
 import styles from './category.module.css';
 
@@ -12,8 +13,9 @@ export function Category({
   functional = true,
   icon,
   id,
+  premium,
   sounds,
-  title,
+  title, // Add the premium property
 }: CategoryProps) {
   return (
     <div className={styles.category} id={`category-${id}`}>
@@ -26,7 +28,14 @@ export function Category({
 
       <div className={styles.title}>{title}</div>
 
-      <Sounds functional={functional} id={id} sounds={sounds} />
+      {/* Check if sounds array is empty and premium exists */}
+      {sounds.length > 0 ? (
+        <Sounds functional={functional} id={id} sounds={sounds} />
+      ) : (
+        premium && (
+          <PremiumContainer icon={premium.icon} message={premium.message} />
+        )
+      )}
     </div>
   );
 }

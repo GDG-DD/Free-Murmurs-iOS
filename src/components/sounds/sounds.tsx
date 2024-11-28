@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Sound } from '@/components/sound';
+import { PremiumContainer } from '@/components/PremiumContainer/PremiumContainer';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { cn } from '@/helpers/styles';
 import { fade, scale, mix } from '@/lib/motion';
@@ -13,10 +14,14 @@ import type { Sounds } from '@/data/types';
 interface SoundsProps {
   functional: boolean;
   id: string;
+  premium?: {
+    icon: React.ReactNode;
+    message: string;
+  };
   sounds: Sounds;
 }
 
-export function Sounds({ functional, id, sounds }: SoundsProps) {
+export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
   const [clickedMore, setClickedMore] = useState(false);
 
@@ -110,6 +115,10 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
             </motion.span>
           </AnimatePresence>
         </button>
+      )}
+
+      {showAll && premium && (
+        <PremiumContainer icon={premium.icon} message={premium.message} />
       )}
     </div>
   );

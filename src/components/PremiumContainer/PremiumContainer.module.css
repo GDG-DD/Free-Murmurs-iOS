@@ -1,0 +1,15 @@
+.premium {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.premium p {
+  font-size: var(--font-md);
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.premiumIcon {
+  font-size: var(--font-lg);
+  color: var(--color-primary);
+}
