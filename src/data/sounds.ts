@@ -7,6 +7,7 @@ import { transport } from './sounds/transport';
 import { things } from './sounds/things';
 import { noise } from './sounds/noise';
 import { binaural } from './sounds/binaural';
+import { lofi } from './sounds/lofi';
 
 import type { Categories } from './types';
 
@@ -23,5 +24,6 @@ export const sounds: {
     things,
     noise,
     binaural,
+    lofi,
   ],
 };
