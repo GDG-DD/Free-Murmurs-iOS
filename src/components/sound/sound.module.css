@@ -107,6 +107,13 @@
   }
 }
 
+/* Add styles for disabled sounds */
+.sound.disabled {
+  cursor: not-allowed; /* Prevent pointer interactions */
+  opacity: 0.5; /* Greyed out */
+  pointer-events: none; /* Disable all interactions */
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);

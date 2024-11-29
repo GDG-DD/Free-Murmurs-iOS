@@ -16,14 +16,25 @@ import type { Sound as SoundType } from '@/data/types';
 import { useKeyboardButton } from '@/hooks/use-keyboard-button';
 
 interface SoundProps extends SoundType {
+  disabled?: boolean;
   functional: boolean;
   hidden: boolean;
   selectHidden: (key: string) => void;
-  unselectHidden: (key: string) => void;
+  unselectHidden: (key: string) => void; // Add disabled property
 }
 
 export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
-  { functional, hidden, icon, id, label, selectHidden, src, unselectHidden },
+  {
+    disabled,
+    functional,
+    hidden,
+    icon,
+    id,
+    label,
+    selectHidden,
+    src,
+    unselectHidden,
+  },
   ref,
 ) {
   const isPlaying = useSoundStore(state => state.isPlaying);
@@ -31,8 +42,8 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const selectSound = useSoundStore(state => state.select);
   const unselectSound = useSoundStore(state => state.unselect);
   const setVolume = useSoundStore(state => state.setVolume);
-  const volume = useSoundStore(state => state.sounds[id].volume);
-  const isSelected = useSoundStore(state => state.sounds[id].isSelected);
+  const volume = useSoundStore(state => state.sounds[id]?.volume);
+  const isSelected = useSoundStore(state => state.sounds[id]?.isSelected);
   const locked = useSoundStore(state => state.locked);
 
   const isLoading = useLoadingStore(state => state.loaders[src]);
@@ -40,14 +51,14 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const sound = useSound(src, { loop: true, volume });
 
   useEffect(() => {
-    if (locked) return;
+    if (locked || disabled) return;
 
     if (isSelected && isPlaying && functional) {
       sound?.play();
     } else {
       sound?.pause();
     }
-  }, [isSelected, sound, isPlaying, functional, locked]);
+  }, [isSelected, sound, isPlaying, functional, locked, disabled]);
 
   useEffect(() => {
     if (hidden && isSelected) selectHidden(label);
@@ -55,22 +66,22 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   }, [label, isSelected, hidden, selectHidden, unselectHidden]);
 
   const select = useCallback(() => {
-    if (locked) return;
+    if (locked || disabled) return;
     selectSound(id);
     play();
-  }, [selectSound, play, id, locked]);
+  }, [selectSound, play, id, locked, disabled]);
 
   const unselect = useCallback(() => {
-    if (locked) return;
+    if (locked || disabled) return;
     unselectSound(id);
     setVolume(id, 0.5);
-  }, [unselectSound, setVolume, id, locked]);
+  }, [unselectSound, setVolume, id, locked, disabled]);
 
   const toggle = useCallback(() => {
-    if (locked) return;
+    if (locked || disabled) return;
     if (isSelected) unselect();
     else select();
-  }, [isSelected, select, unselect, locked]);
+  }, [isSelected, select, unselect, locked, disabled]);
 
   const handleClick = useCallback(() => {
     toggle();
@@ -85,14 +96,15 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
       aria-label={`${label} sound`}
       ref={ref}
       role="button"
-      tabIndex={0}
+      tabIndex={disabled ? -1 : 0} // Disable keyboard focus if disabled
       className={cn(
         styles.sound,
         isSelected && styles.selected,
         hidden && styles.hidden,
+        disabled && styles.disabled, // Add disabled class
       )}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
+      onClick={disabled ? undefined : handleClick} // Disable click if disabled
+      onKeyDown={disabled ? undefined : handleKeyDown} // Disable keyboard interaction if disabled
     >
       <Favorite id={id} label={label} />
       <div className={styles.icon}>

@@ -6,7 +6,7 @@ import {
   GiWashingMachine,
 } from 'react-icons/gi/index';
 import { TbBowlFilled } from 'react-icons/tb/index';
-import { RiFilePaper2Fill, RiBubbleChartFill } from 'react-icons/ri/index';
+import { RiBubbleChartFill } from 'react-icons/ri/index';
 import { BiSolidDryer } from 'react-icons/bi/index';
 import { IoIosRadio } from 'react-icons/io/index';
 

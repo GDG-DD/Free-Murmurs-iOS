@@ -1,9 +1,7 @@
-import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Sound } from '@/components/sound';
-import { PremiumContainer } from '@/components/PremiumContainer/PremiumContainer';
-import { useLocalStorage } from '@/hooks/use-local-storage';
 import { cn } from '@/helpers/styles';
 import { fade, scale, mix } from '@/lib/motion';
 
@@ -22,7 +20,7 @@ interface SoundsProps {
 }
 
 export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
-  const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
+  const [showAll, setShowAll] = useState(false);
   const [clickedMore, setClickedMore] = useState(false);
 
   const [isAnimating, setIsAnimating] = useState(false);
@@ -36,32 +34,6 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
     }
   }, [showAll, clickedMore]);
 
-  const showMoreButton = useRef<HTMLButtonElement>(null);
-
-  const [hiddenSelections, setHiddenSelections] = useState<{
-    [key: string]: boolean;
-  }>({});
-
-  const hasHiddenSelection = useMemo(() => {
-    const keys = Object.keys(hiddenSelections);
-
-    return keys.some(key => hiddenSelections[key]);
-  }, [hiddenSelections]);
-
-  const selectHidden = useCallback((key: string) => {
-    setHiddenSelections(prev => ({
-      ...prev,
-      [key]: true,
-    }));
-  }, []);
-
-  const unselectHidden = useCallback((key: string) => {
-    setHiddenSelections(prev => ({
-      ...prev,
-      [key]: false,
-    }));
-  }, []);
-
   const toggleMore = () => {
     if (!isAnimating) {
       setShowAll(prev => !prev);
@@ -71,36 +43,71 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
 
   const variants = mix(fade(), scale(0.9));
 
-  return (
-    <div>
-      <div className={styles.sounds}>
-        {sounds.map((sound, index) => (
-          <Sound
-            key={sound.label}
-            {...sound}
-            functional={functional}
-            hidden={!showAll && index > 5}
-            ref={index === 6 ? firstNewSound : undefined}
-            selectHidden={selectHidden}
-            unselectHidden={unselectHidden}
-          />
-        ))}
-
-        {sounds.length < 2 &&
-          new Array(2 - sounds.length)
-            .fill(null)
-            .map((_, index) => <div key={index} />)}
-      </div>
-
-      {sounds.length > 6 && (
-        <button
-          ref={showMoreButton}
-          className={cn(
-            styles.button,
-            hasHiddenSelection && !showAll && styles.active,
-          )}
-          onClick={toggleMore}
+  // Custom behavior for Binaural and Color Noises categories
+  if (id === 'binaural' || id === 'color-noises') {
+    return (
+      <div>
+        {/* Premium Message */}
+        <p
+          style={{ color: '#FA4600', fontWeight: 'bold', textAlign: 'center' }}
         >
+          Premium-Exclusive Category
+        </p>
+
+        <div className={styles.sounds}>
+          {sounds.map(sound => (
+            <Sound
+              key={sound.label}
+              {...sound}
+              disabled={true} // Greyed out and unclickable
+              functional={functional}
+              hidden={false} // Always show all sounds
+              ref={undefined}
+              selectHidden={() => {}}
+              unselectHidden={() => {}}
+            />
+          ))}
+        </div>
+
+        {/* Premium Message and PNG */}
+        {premium && (
+          <div className={styles.premiumContainer}>
+            <p>{premium.message}</p>
+            <div>{premium.icon}</div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Custom behavior for the "Things" category
+  if (id === 'things') {
+    return (
+      <div>
+        <div className={styles.sounds}>
+          {/* Top row: Clickable sounds */}
+          {sounds.slice(0, 3).map(sound => (
+            <Sound
+              key={sound.label}
+              {...sound}
+              disabled={false} // Clickable
+              functional={functional}
+              hidden={false}
+              ref={undefined}
+              selectHidden={() => {}}
+              unselectHidden={() => {}}
+            />
+          ))}
+        </div>
+
+        {/* Premium message */}
+        <p className={styles.premiumMessage}>
+          More sounds available in{' '}
+          <span style={{ color: '#FA4600' }}>Premium</span>
+        </p>
+
+        {/* Show More / Show Less button */}
+        <button className={cn(styles.button)} onClick={toggleMore}>
           <AnimatePresence initial={false} mode="wait">
             <motion.span
               animate="show"
@@ -115,10 +122,68 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
             </motion.span>
           </AnimatePresence>
         </button>
-      )}
 
-      {showAll && premium && (
-        <PremiumContainer icon={premium.icon} message={premium.message} />
+        {/* Remaining sounds: Greyed out */}
+        {showAll && (
+          <div className={styles.sounds}>
+            {sounds.slice(3).map(sound => (
+              <Sound
+                key={sound.label}
+                {...sound}
+                disabled={true} // Greyed out and unclickable
+                functional={functional}
+                hidden={false}
+                ref={undefined}
+                selectHidden={() => {}}
+                unselectHidden={() => {}}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Default rendering for other categories
+  return (
+    <div>
+      <div className={styles.sounds}>
+        {sounds.map((sound, index) => (
+          <Sound
+            key={sound.label}
+            {...sound}
+            disabled={sound.disabled} // Pass the disabled property
+            functional={functional}
+            hidden={!showAll && index > 5} // Show only the first 6 sounds unless "Show More" is clicked
+            ref={index === 6 ? firstNewSound : undefined}
+            selectHidden={() => {}}
+            unselectHidden={() => {}}
+          />
+        ))}
+
+        {sounds.length < 2 &&
+          new Array(2 - sounds.length)
+            .fill(null)
+            .map((_, index) => <div key={index} />)}
+      </div>
+
+      {/* Show More / Show Less Button */}
+      {sounds.length > 6 && (
+        <button className={cn(styles.button)} onClick={toggleMore}>
+          <AnimatePresence initial={false} mode="wait">
+            <motion.span
+              animate="show"
+              exit="hidden"
+              initial="hidden"
+              key={showAll ? `${id}-show-less` : `${id}-show-more`}
+              variants={variants}
+              onAnimationComplete={() => setIsAnimating(false)}
+              onAnimationStart={() => setIsAnimating(true)}
+            >
+              {showAll ? 'Show Less' : 'Show More'}
+            </motion.span>
+          </AnimatePresence>
+        </button>
       )}
     </div>
   );

@@ -59,3 +59,29 @@
     border-radius: 50%;
   }
 }
+
+.premiumContainer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.premiumContainer p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-neutral-700); /* Adjust color for better visibility */
+}
+
+.premiumContainer img {
+  width: 150px;
+}
+
+/* Add a new class for the premium message text */
+.premiumMessage {
+  display: block; /* Ensure it behaves as a block element */
+  margin: 20px 0; /* Add vertical spacing above and below */
+  font-size: 16px; /* Ensure the font size is consistent */
+  font-weight: bold; /* Make the text bold */
+  color: var(--color-neutral-700); /* Neutral color for visibility */
+  text-align: center; /* Center the text horizontally */
+}
