@@ -1,26 +1,10 @@
-import { FaVolumeUp, FaWaveSquare } from 'react-icons/fa';
+import { FaVolumeUp, FaWaveSquare } from 'react-icons/fa/index'; // Import icons directly
 
 import type { Category } from '../types';
 
 export const noise: Category = {
   icon: <FaVolumeUp />, // Icon for the category
   id: 'color-noises', // Unique ID for the category
-  premium: {
-    icon: (
-      <a
-        href="https://play.google.com/store/apps/details?id=your.app.id"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <img
-          alt="Get it on Google Play"
-          src="/images/google-play-badge.png" // Path to the Google Play badge image
-          style={{ width: '150px' }}
-        />
-      </a>
-    ),
-    message: 'Get the Premium Version here!', // Premium message
-  },
   sounds: [
     {
       disabled: true, // Mark the sound as disabled

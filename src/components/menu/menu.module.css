@@ -29,13 +29,58 @@
   z-index: 15;
   display: flex;
   flex-direction: column;
-  row-gap: 4px;
+  row-gap: 8px; /* Add spacing between items */
+  align-items: center; /* Center justify all items */
   width: 270px;
   height: max-content;
   max-height: var(--radix-dropdown-menu-content-available-height);
-  padding: 4px;
+  padding: 20px; /* Add padding for better spacing */
   overflow: auto;
+  text-align: center; /* Center align text */
   background-color: var(--color-neutral-100);
   border: 1px solid var(--color-neutral-300);
   border-radius: 4px;
+}
+
+/* Basic Features Section */
+.basicSection {
+  margin-bottom: 16px; /* Add spacing below the section */
+}
+
+.basicTitle {
+  margin-bottom: 8px; /* Add spacing below the title */
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-foreground); /* White color for the title */
+}
+
+/* Premium Features Section */
+
+/* Premium Features Section */
+.premiumSection {
+  padding: 0; /* Remove extra padding */
+  margin-bottom: 8px;
+  text-align: center; /* Center align the text */
+  background-color: transparent; /* No background */
+}
+
+.premiumTitle {
+  display: inline-block; /* Make the box fit the words */
+  width: auto; /* Ensure the box width adjusts to the text */
+  padding: 2px 6px; /* Reduce padding around the text */
+  font-size: 18px; /* Increase the size of the text */
+  font-weight: bold;
+  color: #fa4600; /* Orange color for the title */
+  border-radius: 4px; /* Optional: Add rounded corners */
+}
+
+/* Disabled Items */
+.disabledItem {
+  pointer-events: none; /* Disable hover and clicks */
+  cursor: not-allowed; /* Show "not-allowed" cursor */
+  opacity: 0.5; /* Greyed-out appearance */
+}
+
+.disabledItem:hover {
+  background-color: transparent; /* Prevent hover highlight */
 }

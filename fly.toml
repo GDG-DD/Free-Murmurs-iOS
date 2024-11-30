@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for focus-wispy-violet-2723 on 2024-10-30T23:43:22+08:00
+# fly.toml app configuration file generated for free-murmurs on 2024-11-29T18:07:54+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'focus-wispy-violet-2723'
+app = 'free-murmurs'
 primary_region = 'sin'
 
 [build]

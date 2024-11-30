@@ -16,6 +16,7 @@ export const sounds: {
 } = {
   categories: [
     nature,
+    lofi,
     rain,
     animals,
     urban,
@@ -24,6 +25,5 @@ export const sounds: {
     things,
     noise,
     binaural,
-    lofi,
   ],
 };

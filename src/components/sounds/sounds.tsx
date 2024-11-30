@@ -51,7 +51,14 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
         <p
           style={{ color: '#FA4600', fontWeight: 'bold', textAlign: 'center' }}
         >
-          Premium-Exclusive Category
+          <a
+            href="https://play.google.com/store/apps/details?id=app.murmurs.android"
+            rel="noopener noreferrer"
+            style={{ color: '#FA4600', textDecoration: 'none' }}
+            target="_blank"
+          >
+            Premium-Exclusive Category
+          </a>
         </p>
 
         <div className={styles.sounds}>
@@ -80,8 +87,17 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
     );
   }
 
-  // Custom behavior for the "Things" category
-  if (id === 'things') {
+  // Custom behavior for the "Things", "Transport", "Places", "Urban", "Animals", "Rain", "Nature", and "Lofi" categories
+  if (
+    id === 'things' ||
+    id === 'transport' ||
+    id === 'places' ||
+    id === 'urban' ||
+    id === 'animals' ||
+    id === 'rain' ||
+    id === 'nature' ||
+    id === 'lofi'
+  ) {
     return (
       <div>
         <div className={styles.sounds}>
@@ -103,7 +119,14 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
         {/* Premium message */}
         <p className={styles.premiumMessage}>
           More sounds available in{' '}
-          <span style={{ color: '#FA4600' }}>Premium</span>
+          <a
+            href="https://play.google.com/store/apps/details?id=app.murmurs.android"
+            rel="noopener noreferrer"
+            style={{ color: '#FA4600', textDecoration: 'none' }}
+            target="_blank"
+          >
+            Premium
+          </a>
         </p>
 
         {/* Show More / Show Less button */}

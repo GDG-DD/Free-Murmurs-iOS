@@ -10,7 +10,7 @@ interface ItemProps {
   icon: React.ReactElement;
   label: string;
   onClick?: () => void;
-  shortcut?: string;
+  shortcut?: string; // Shortcut prop remains, but we won't display it
 }
 
 export function Item({
@@ -37,7 +37,8 @@ export function Item({
           {active && <div className={styles.active} />}
         </span>
 
-        {shortcut && <span className={styles.shortcut}>{shortcut}</span>}
+        {/* Remove or comment out the shortcut rendering */}
+        {/* {shortcut && <span className={styles.shortcut}>{shortcut}</span>} */}
 
         {href && (
           <span className={styles.external}>

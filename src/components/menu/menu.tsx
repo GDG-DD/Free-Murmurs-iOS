@@ -1,25 +1,18 @@
 import { useState, useMemo, useCallback } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useHotkeys } from 'react-hotkeys-hook';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import {
   ShuffleItem,
-  //ShareItem,
   NotepadItem,
-  SourceItem,
   PomodoroItem,
-  CountdownTimerItem,
-  PresetsItem,
-  ShortcutsItem,
-  SleepTimerItem,
   BreathingExerciseItem,
+  PresetsItem,
+  SleepTimerItem,
 } from './items';
 import { Divider } from './divider';
-//import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
-import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { Notepad, Pomodoro, BreathingExercise } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
@@ -40,8 +33,6 @@ export function Menu() {
       notepad: false,
       pomodoro: false,
       presets: false,
-      //shareLink: false,
-      shortcuts: false,
       sleepTimer: false,
     }),
     [],
@@ -64,15 +55,6 @@ export function Menu() {
     },
     [closeAll],
   );
-
-  // useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  // useHotkeys('shift+n', () => open('notepad'));
-  // useHotkeys('shift+p', () => open('pomodoro'));
-  // useHotkeys('shift+b', () => open('breathingExercise'));
-  // useHotkeys('shift+alt+p', () => open('presets'));
-  // useHotkeys('shift+h', () => open('shortcuts'));
-  // useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  // useHotkeys('shift+t', () => open('sleepTimer'));
 
   useCloseListener(closeAll);
 
@@ -105,24 +87,32 @@ export function Menu() {
                     initial="hidden"
                     variants={variants}
                   >
-                    <PresetsItem open={() => open('presets')} />
-                    {/*<ShareItem open={() => open('shareLink')} /> */}
-                    <ShuffleItem />
-                    <SleepTimerItem open={() => open('sleepTimer')} />
+                    {/* Basic Features Section */}
+                    <div className={styles.basicSection}>
+                      <p className={styles.basicTitle}>Basic Features</p>
+
+                      <PresetsItem open={() => open('presets')} />
+                      <ShuffleItem />
+                      <SleepTimerItem open={() => open('sleepTimer')} />
+                    </div>
 
                     <Divider />
-                    <BreathingExerciseItem
-                      open={() => open('breathingExercise')}
-                    />
-                    <PomodoroItem open={() => open('pomodoro')} />
-                    <NotepadItem open={() => open('notepad')} />
-                    {/* <CountdownTimerItem /> */}
 
-                    {/*<Divider />*/}
-                    {/*<ShortcutsItem open={() => open('shortcuts')} />*/}
+                    {/* Premium Features Section */}
+                    <div className={styles.premiumSection}>
+                      <p className={styles.premiumTitle}>Premium Features</p>
 
-                    {/*<Divider />*/}
-                    {/* <DonateItem /> */}
+                      {/* Greyed-out and disabled items */}
+                      <div className={styles.disabledItem}>
+                        <BreathingExerciseItem open={() => {}} />
+                      </div>
+                      <div className={styles.disabledItem}>
+                        <PomodoroItem open={() => {}} />
+                      </div>
+                      <div className={styles.disabledItem}>
+                        <NotepadItem open={() => {}} />
+                      </div>
+                    </div>
                   </motion.div>
                 </DropdownMenu.Content>
               </DropdownMenu.Portal>
@@ -131,14 +121,6 @@ export function Menu() {
         </DropdownMenu.Root>
       </div>
 
-      {/*<ShareLinkModal
-        show={modals.shareLink}
-        onClose={() => close('shareLink')}
-      />*/}
-      {/*<ShortcutsModal
-        show={modals.shortcuts}
-        onClose={() => close('shortcuts')}
-      />*/}
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <Notepad show={modals.notepad} onClose={() => close('notepad')} />
       <Pomodoro
