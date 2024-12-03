@@ -8,7 +8,8 @@ interface Props {
   title?: string;
 }
 
-const title = Astro.props.title || 'Murmurs: Ambient Sounds for Focus and Calm';
+const title =
+  Astro.props.title || 'Murmurs Free: Ambient Sounds for Focus and Calm';
 const description =
   Astro.props.description ||
   `Murmurs is a premium ambient sound generator featuring ${count()} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.`;
@@ -29,7 +30,7 @@ const description =
 
     <meta content={title} property="og:title" />
     <meta content={description} property="og:description" />
-    <meta content="Murmurs" property="og:site_name" />
+    <meta content="Murmurs Free" property="og:site_name" />
     <meta content="https://murmurs.stream" property="og:url" />
     <meta content="website" property="og:type" />
     <meta content="https://murmurs.stream/og.png" property="og:image" />
@@ -47,7 +48,7 @@ const description =
         var tracer = new Tracer({
           async: true,
           debug: false,
-          websiteId: '162f5cfc-31fd-4004-a9bb-8976c7ad7821',
+          websiteId: '4e9eed7e-c937-42bf-a391-924abf2fa593',
         });
 
         // Example of tracking a page view
