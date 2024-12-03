@@ -12,7 +12,7 @@ const title =
   Astro.props.title || 'Murmurs Free: Ambient Sounds for Focus and Calm';
 const description =
   Astro.props.description ||
-  `Murmurs is a premium ambient sound generator featuring ${count()} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.`;
+  `Murmurs Free a the ad-supported ambient sound generator featuring ${count()} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.`;
 ---
 
 <!doctype html>
@@ -41,22 +41,24 @@ const description =
     <script
       async
       defer
+      onload="init_tracer()"
       src="https://app.visitortracking.com/assets/js/tracer.js"></script>
     <script>
-      // Initialize the tracer for tracking viewers
       function init_tracer() {
-        var tracer = new Tracer({
-          async: true,
-          debug: false,
-          websiteId: '4e9eed7e-c937-42bf-a391-924abf2fa593',
-        });
-
-        // Example of tracking a page view
-        tracer.trackPageView(); // Call this method to track the page view
+        if (typeof Tracer !== 'undefined') {
+          var tracer = new Tracer({
+            async: true,
+            debug: false,
+            websiteId: '4e9eed7e-c937-42bf-a391-924abf2fa593',
+          });
+          // Example of tracking a page view
+          tracer.trackPageView(); // Call this method to track the page view
+        } else {
+          console.error(
+            'Tracer is not defined. Please check the script source.',
+          );
+        }
       }
-
-      // Call the function immediately to ensure tracking is set up
-      init_tracer();
     </script>
   </head>
   <body>
