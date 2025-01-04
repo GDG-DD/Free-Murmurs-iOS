@@ -52,7 +52,7 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
           style={{ color: '#FA4600', fontWeight: 'bold', textAlign: 'center' }}
         >
           <a
-            href="https://play.google.com/store/apps/details?id=app.murmurs.android"
+            href="https://apps.apple.com/sg/app/murmurs-focus-better/id6739237629"
             rel="noopener noreferrer"
             style={{ color: '#FA4600', textDecoration: 'none' }}
             target="_blank"
@@ -120,7 +120,7 @@ export function Sounds({ functional, id, premium, sounds }: SoundsProps) {
         <p className={styles.premiumMessage}>
           More sounds available in{' '}
           <a
-            href="https://play.google.com/store/apps/details?id=app.murmurs.android"
+            href="https://apps.apple.com/sg/app/murmurs-focus-better/id6739237629"
             rel="noopener noreferrer"
             style={{ color: '#FA4600', textDecoration: 'none' }}
             target="_blank"

@@ -7,10 +7,15 @@ import { IoCloudyNightOutline } from 'react-icons/io5/index';
 import { TbBrandAppleArcade, TbSunset2 } from 'react-icons/tb/index';
 import { LiaCarSideSolid } from 'react-icons/lia/index';
 import { FaMountainCity } from 'react-icons/fa6/index';
-import { FaCameraRetro } from 'react-icons/fa/index';
 import { MdOutlineWbTwilight } from 'react-icons/md/index';
 import { BiSolidCity } from 'react-icons/bi/index';
-import { BsCassetteFill } from 'react-icons/bs/index';
+import {
+  BsBalloonHeartFill,
+  BsCassetteFill,
+  BsHeartbreakFill,
+  BsStars,
+} from 'react-icons/bs/index';
+import { FaSchool, FaRegSadTear } from 'react-icons/fa/index';
 
 import type { Category } from '../types';
 
@@ -19,11 +24,36 @@ export const lofi: Category = {
   id: 'lofi',
   sounds: [
     {
-      icon: <GiNightSky />,
+      icon: <BsBalloonHeartFill />,
+      id: 'everything',
+      label: 'Everything',
+      src: '/sounds/lofi/everything.mp3',
+    },
+    {
+      icon: <FaRegSadTear />,
+      id: 'regrets',
+      label: 'Regrets',
+      src: '/sounds/lofi/regrets.mp3',
+    },
+    {
+      icon: <BsStars />,
+      id: 'wishing',
+      label: 'Wishing',
+      src: '/sounds/lofi/wishing.mp3',
+    },
+    {
+      icon: <FaSchool />,
+      id: 'school-compound',
+      label: 'School Compound',
+      src: '/sounds/lofi/school-compound.mp3',
+    },
+    {
+      icon: <BsHeartbreakFill />,
       id: 'cozy-night',
       label: 'Cozy Night',
-      src: '/sounds/lofi/cozy-night.mp3',
+      src: '/sounds/lofi/heartbreak.mp3',
     },
+
     {
       icon: <GiModernCity />,
       id: 'retro-city',
@@ -56,12 +86,7 @@ export const lofi: Category = {
       label: 'Starry Lake',
       src: '/sounds/lofi/starry-lake.mp3',
     },
-    {
-      icon: <FaCameraRetro />,
-      id: 'polaroid-dreams',
-      label: 'Polaroid Dreams',
-      src: '/sounds/lofi/polaroid-dreams.mp3',
-    },
+
     {
       icon: <TbBrandAppleArcade />,
       id: 'vintage-arcade',

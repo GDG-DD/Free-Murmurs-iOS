@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for free-murmurs on 2024-11-29T18:07:54+08:00
+# fly.toml app configuration file generated for free-murmurs-ios on 2024-12-12T09:06:46+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'free-murmurs'
+app = 'free-murmurs-ios'
 primary_region = 'sin'
 
 [build]
