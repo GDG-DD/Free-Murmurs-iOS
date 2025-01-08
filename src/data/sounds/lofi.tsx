@@ -30,10 +30,10 @@ export const lofi: Category = {
       src: '/sounds/lofi/everything.mp3',
     },
     {
-      icon: <FaRegSadTear />,
-      id: 'regrets',
-      label: 'Regrets',
-      src: '/sounds/lofi/regrets.mp3',
+      icon: <BiSolidCity />,
+      id: 'neon-nights',
+      label: 'Neon Nights',
+      src: '/sounds/lofi/neon-nights.mp3',
     },
     {
       icon: <BsStars />,
@@ -61,10 +61,10 @@ export const lofi: Category = {
       src: '/sounds/lofi/retro-city.mp3',
     },
     {
-      icon: <BiSolidCity />,
-      id: 'neon-nights',
-      label: 'Neon Nights',
-      src: '/sounds/lofi/neon-nights.mp3',
+      icon: <FaRegSadTear />,
+      id: 'regrets',
+      label: 'Regrets',
+      src: '/sounds/lofi/regrets.mp3',
     },
 
     {
